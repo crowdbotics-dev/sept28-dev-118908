@@ -1,32 +1,31 @@
-import mods from "./*/index.js"
-import { getModules } from "./modules.js"
+import React from 'react';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 
-export const modules = getModules(mods)
+const LoginScreen = () => {
+  return <SafeAreaView style={styles.container}>
+      <View style={styles.content}>
+        <Text style={styles.title}>Login</Text>
+        {
+        /* Add login form components here */
+      }
+      </View>
+    </SafeAreaView>;
+};
 
-export const slices = modules
-  .filter(mod => mod.value.slice)
-  .map(mod => mod.value.slice)
-
-export const reducers = slices.reduce((acc, slice) => {
-  let name = slice.name.charAt(0).toUpperCase() + slice.name.slice(1)
-  acc[name] = slice.reducer
-  return acc
-}, {})
-
-export const navigators = modules
-  .filter(mod => mod.value.navigator)
-  .map(mod => {
-    return {
-      name: mod.name,
-      value: mod.value.navigator
-    }
-  })
-
-export const hooks = modules
-  .filter(mod => mod.value.hook)
-  .map(mod => {
-    return {
-      name: mod.name,
-      value: mod.value.hook
-    }
-  })
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FF0000'
+  },
+  content: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#FFFFFF'
+  }
+});
+export default LoginScreen;
